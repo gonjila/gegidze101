@@ -7,7 +7,7 @@ import { reportsContext } from "../../context/reportsCtx";
 import DoughnutChart from "./DoughnutChart";
 
 function Projectswithchart() {
-  const { projects, gateways, reports } = useContext(reportsContext);
+  const { projects, reports } = useContext(reportsContext);
 
   const productsPrices = projects.map((project) => {
     let currentAmount = 0;
@@ -18,9 +18,6 @@ function Projectswithchart() {
     });
     return currentAmount;
   });
-
-  gateways && console.log("gateways", gateways);
-  // && console.log(gateways.find((gateway) => gateway.gatewayId === "i6ssp"));
 
   return (
     <>
@@ -68,7 +65,6 @@ function Projectswithchart() {
                         <thead>
                           <tr>
                             <th>Date</th>
-                            <th>Gateway</th>
                             <th>Transaction ID</th>
                             <th>Amount</th>
                           </tr>
@@ -83,14 +79,6 @@ function Projectswithchart() {
                               <tbody key={filteredReport.paymentId}>
                                 <tr>
                                   <th scope="row">{filteredReport.created}</th>
-                                  <td>
-                                    {gateways.length > 0 &&
-                                      gateways.find(
-                                        (gateway) =>
-                                          gateway.gatewayId ===
-                                          filteredReport.gatewayId
-                                      ).name}
-                                  </td>
                                   <td>a732b</td>
                                   <td>{filteredReport.amount} USD</td>
                                 </tr>

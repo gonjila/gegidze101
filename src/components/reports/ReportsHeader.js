@@ -13,7 +13,9 @@ function ReportsHeader() {
   const fromDateRef = useRef();
   const toDateRef = useRef();
 
-  const { setProjects, setGateways, setReports } = useContext(reportsContext);
+  const { setProjects, setGateways, setReports, setHeaderData } = useContext(
+    reportsContext
+  );
 
   const [allProjects, setAllProjects] = useState([]);
   const [allGateways, setAllGateways] = useState([]);
@@ -40,7 +42,7 @@ function ReportsHeader() {
       to: toDateRef.current.value,
     };
 
-    console.log("formData", formData);
+    setHeaderData(formData);
 
     if (projectRef.current.value) {
       setProjects(
@@ -82,7 +84,14 @@ function ReportsHeader() {
         <Col xs={8}>
           <Row className="justify-content-end">
             <form onSubmit={(e) => onFormSubmmit(e)}>
-              <select ref={projectRef} className="mr-2 dropdownheader">
+              <select
+                ref={projectRef}
+                className="mr-2 dropdownheader"
+                defaultValue={null}
+              >
+                <option value="select" selected disabled>
+                  select projects
+                </option>
                 <option value="">All projects</option>
                 {allProjects &&
                   allProjects.map((project) => (
@@ -92,7 +101,14 @@ function ReportsHeader() {
                   ))}
               </select>
 
-              <select ref={gatewayRef} className="mr-2 dropdownheader">
+              <select
+                ref={gatewayRef}
+                className="mr-2 dropdownheader"
+                defaultValue={null}
+              >
+                <option value="select" selected disabled>
+                  Select gateways
+                </option>
                 <option value="">All gateways</option>
                 {allGateways &&
                   allGateways.map((gateway) => (

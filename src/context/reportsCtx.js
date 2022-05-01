@@ -6,44 +6,15 @@ const ReportsContextProvider = ({ children }) => {
   const [projects, setProjects] = useState([]);
   const [gateways, setGateways] = useState([]);
   const [reports, setReports] = useState([]);
+  const [headerData, setHeaderData] = useState({});
   const [totalAmount, setTotalAmount] = useState(0);
 
-  const formData = {
-    projectId: "",
-    gatewayId: "",
-    from: "",
-    to: "",
-  };
-
   useEffect(() => {
-    fetch(`http://178.63.13.157:8090/mock-api/api/projects`)
-      .then((res) => res.json())
-      .then((result) => setProjects(result.data))
-      .catch((err) => console.error(err));
-
-    fetch(`http://178.63.13.157:8090/mock-api/api/gateways`)
-      .then((res) => res.json())
-      .then((result) => setGateways(result.data))
-      .catch((err) => console.error(err));
-
-    fetch(`http://178.63.13.157:8090/mock-api/api/report`, {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: { "content-type": "application/json" },
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        setReports(result.data);
-        return result.data;
-      })
-      .then((data) =>
-        setTotalAmount(
-          Math.round(data.reduce((prev, curr) => prev + curr.amount, 0) * 100) /
-            100
-        )
-      )
-      .catch((err) => console.error(err));
-  }, []);
+    setTotalAmount(
+      Math.round(reports.reduce((prev, curr) => prev + curr.amount, 0) * 100) /
+        100
+    );
+  }, [reports]);
 
   return (
     <reportsContext.Provider
@@ -54,6 +25,8 @@ const ReportsContextProvider = ({ children }) => {
         setGateways,
         reports,
         setReports,
+        headerData,
+        setHeaderData,
         totalAmount,
       }}
     >

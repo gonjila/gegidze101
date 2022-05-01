@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
 import { Table } from "reactstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.min.js";
 
 import { reportsContext } from "../../context/reportsCtx";
 
-function Allprojects() {
+function SingleProjectAndGateway() {
   const { projects, reports } = useContext(reportsContext);
 
   return (
@@ -42,7 +40,7 @@ function Allprojects() {
 
             <div
               id={`${project.projectId}`}
-              className="collapse hide"
+              className="collapse show"
               aria-labelledby="headingOne"
               data-parent="#accordion"
             >
@@ -51,7 +49,6 @@ function Allprojects() {
                   <thead>
                     <tr>
                       <th>Date</th>
-                      <th>Gateway</th>
                       <th>Transaction ID</th>
                       <th>Amount</th>
                     </tr>
@@ -66,7 +63,6 @@ function Allprojects() {
                         <tbody key={filteredReport.paymentId}>
                           <tr>
                             <th scope="row">{filteredReport.created}</th>
-                            <td>gateway X</td>
                             <td>a732b</td>
                             <td>{filteredReport.amount} USD</td>
                           </tr>
@@ -81,4 +77,4 @@ function Allprojects() {
   );
 }
 
-export default Allprojects;
+export default SingleProjectAndGateway;
