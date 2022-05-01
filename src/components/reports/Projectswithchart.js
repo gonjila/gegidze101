@@ -2,17 +2,12 @@ import React, { useContext } from "react";
 import { Table, Row, Col } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
 
 import { reportsContext } from "../../context/reportsCtx";
-
-ChartJS.register(ArcElement, Tooltip, Legend);
+import DoughnutChart from "./DoughnutChart";
 
 function Projectswithchart() {
-  const { projects, gateways, reports, totalAmount } = useContext(
-    reportsContext
-  );
+  const { projects, gateways, reports } = useContext(reportsContext);
 
   const productsPrices = projects.map((project) => {
     let currentAmount = 0;
@@ -24,29 +19,8 @@ function Projectswithchart() {
     return currentAmount;
   });
 
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-  }
-
-  const chartData = {
-    labels: projects.map((project) => project.name),
-    datasets: [
-      {
-        label: "# of Votes",
-        data: productsPrices.map((price) => (price * 100) / totalAmount),
-        backgroundColor: projects.map(
-          () => `rgba(${255}, ${getRandomInt(255)}, ${getRandomInt(255)}, 1)`
-        ),
-        borderColor: projects.map(
-          () =>
-            `rgba(${getRandomInt(255)}, ${getRandomInt(255)}, ${getRandomInt(
-              255
-            )}, 1)`
-        ),
-        borderWidth: 1,
-      },
-    ],
-  };
+  gateways && console.log("gateways", gateways);
+  // && console.log(gateways.find((gateway) => gateway.gatewayId === "i6ssp"));
 
   return (
     <>
@@ -110,7 +84,7 @@ function Projectswithchart() {
                                 <tr>
                                   <th scope="row">{filteredReport.created}</th>
                                   <td>
-                                    {gateways &&
+                                    {gateways.length > 0 &&
                                       gateways.find(
                                         (gateway) =>
                                           gateway.gatewayId ===
@@ -129,9 +103,13 @@ function Projectswithchart() {
               ))}
           </div>
         </Col>
+
         <Col xs={6} className="d-flex justify-content-center">
           <Col xs={8}>
-            <Doughnut data={chartData} />
+            <DoughnutChart
+              projects={projects}
+              productsPrices={productsPrices}
+            />
           </Col>
         </Col>
       </Row>

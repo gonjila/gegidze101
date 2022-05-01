@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
 import { Navbar, Button, NavbarToggler } from "reactstrap";
 import Burger from "../../assets/images/burger.svg";
 import { userContext } from "../../context/userCtx";

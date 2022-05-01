@@ -19,16 +19,12 @@ const ReportsContextProvider = ({ children }) => {
     fetch(`http://178.63.13.157:8090/mock-api/api/projects`)
       .then((res) => res.json())
       .then((result) => setProjects(result.data))
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.error(err));
 
     fetch(`http://178.63.13.157:8090/mock-api/api/gateways`)
       .then((res) => res.json())
       .then((result) => setGateways(result.data))
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.error(err));
 
     fetch(`http://178.63.13.157:8090/mock-api/api/report`, {
       method: "POST",
@@ -46,7 +42,7 @@ const ReportsContextProvider = ({ children }) => {
             100
         )
       )
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   }, []);
 
   return (

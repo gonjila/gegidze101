@@ -2,11 +2,7 @@ import React, { useRef, useState, useEffect, useContext } from "react";
 import {
   Col,
   Row,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Button,
+  // Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button,
 } from "reactstrap";
 
 import { reportsContext } from "../../context/reportsCtx";
@@ -26,15 +22,12 @@ function ReportsHeader() {
     fetch(`http://178.63.13.157:8090/mock-api/api/projects`)
       .then((res) => res.json())
       .then((result) => setAllProjects(result.data))
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.error("allProjects", err));
+
     fetch(`http://178.63.13.157:8090/mock-api/api/gateways`)
       .then((res) => res.json())
       .then((result) => setAllGateways(result.data))
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.error("allGateways", err));
   }, []);
 
   const onFormSubmmit = (e) => {
@@ -47,7 +40,7 @@ function ReportsHeader() {
       to: toDateRef.current.value,
     };
 
-    console.log(formData);
+    console.log("formData", formData);
 
     if (projectRef.current.value) {
       setProjects(
@@ -76,7 +69,7 @@ function ReportsHeader() {
     })
       .then((res) => res.json())
       .then((result) => setReports(result.data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.error("reports", err));
   };
 
   return (

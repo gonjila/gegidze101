@@ -1,6 +1,6 @@
 import React from "react";
-import Allprojects from "../reports/Allprojects";
-import Noreports from "../reports/Noreports";
+// import Allprojects from "../reports/Allprojects";
+// import Noreports from "../reports/Noreports";
 import Projectswithchart from "../reports/Projectswithchart";
 import ReportsHeader from "../reports/ReportsHeader";
 
