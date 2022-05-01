@@ -1,9 +1,5 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
-import {
-  Col,
-  Row,
-  // Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button,
-} from "reactstrap";
+import { Col, Row } from "reactstrap";
 
 import { reportsContext } from "../../context/reportsCtx";
 
@@ -87,9 +83,9 @@ function ReportsHeader() {
               <select
                 ref={projectRef}
                 className="mr-2 dropdownheader"
-                defaultValue={null}
+                defaultValue="select"
               >
-                <option value="select" selected disabled>
+                <option value="select" disabled>
                   select projects
                 </option>
                 <option value="">All projects</option>
@@ -104,9 +100,9 @@ function ReportsHeader() {
               <select
                 ref={gatewayRef}
                 className="mr-2 dropdownheader"
-                defaultValue={null}
+                defaultValue="select"
               >
-                <option value="select" selected disabled>
+                <option value="select" disabled>
                   Select gateways
                 </option>
                 <option value="">All gateways</option>
@@ -134,29 +130,6 @@ function ReportsHeader() {
 
               <button className="mr-2 generatebtn">Generate report</button>
             </form>
-
-            {/* <Dropdown toggle={function noRefCheck() {}} className="mr-2 dropdownheader">
-              <DropdownToggle caret>Select project</DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem header>Header</DropdownItem>
-                <DropdownItem>Some Action</DropdownItem>
-                <DropdownItem text>Dropdown Item Text</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-
-            <Dropdown toggle={function noRefCheck() {}} className="mr-2 dropdownheader">
-              <DropdownToggle caret>Select gateway</DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem header>Header</DropdownItem>
-                <DropdownItem>Some Action</DropdownItem>
-                <DropdownItem text>Dropdown Item Text</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-
-            <Button className="mr-2 buttonheader">From date</Button>
-
-            <Button className="mr-2 buttonheader">to date</Button>
-            <Button className="mr-2 generatebtn">Generate Report</Button> */}
           </Row>
         </Col>
       </Row>

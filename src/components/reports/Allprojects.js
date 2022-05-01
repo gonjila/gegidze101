@@ -6,13 +6,13 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import { reportsContext } from "../../context/reportsCtx";
 
 function Allprojects() {
-  const { projects, reports } = useContext(reportsContext);
+  const { projects, reports, gateways } = useContext(reportsContext);
 
   return (
     <div id="accordion">
       {projects &&
         projects.map((project) => (
-          <div className="card">
+          <div className="card" key={project.projectId}>
             <div
               className="card-header"
               id="headingOne"
@@ -66,7 +66,14 @@ function Allprojects() {
                         <tbody key={filteredReport.paymentId}>
                           <tr>
                             <th scope="row">{filteredReport.created}</th>
-                            <td>gateway X</td>
+                            <th>
+                              {gateways &&
+                                gateways.find(
+                                  (gateway) =>
+                                    filteredReport.gatewayId ===
+                                    gateway.gatewayId
+                                ).name}
+                            </th>
                             <td>a732b</td>
                             <td>{filteredReport.amount} USD</td>
                           </tr>

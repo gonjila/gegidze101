@@ -10,7 +10,7 @@ function SingleProjectAndGateway() {
     <div id="accordion">
       {projects &&
         projects.map((project) => (
-          <div className="card">
+          <div className="card" id="accordion" key={project.projectId}>
             <div
               className="card-header"
               id="headingOne"
