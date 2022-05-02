@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React, { useContext } from "react";
 import { Table, Row, Col } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
